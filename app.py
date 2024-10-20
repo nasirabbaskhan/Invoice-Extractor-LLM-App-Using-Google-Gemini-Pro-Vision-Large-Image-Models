@@ -1,7 +1,6 @@
-import streamlit as st
-from langchain_google_genai import ChatGoogleGenerativeAI
 from PIL import Image
-import google.generativeai as genai
+import google.generativeai as genai # type: ignore
+import streamlit as st
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -36,13 +35,13 @@ def get_gemni_response(prompt, image,user_input):
 #initilize our streamlite app
 st.set_page_config(page_title="Multilanguage Invoice Extractor ")
 st.header("MultiLanguage Invoice Extractor")
-user_input = st.text_input("input_prompt", key="input")
+user_input = st.text_input("Input Prompt", key="input")
 upload_file = st.file_uploader("choose an image of the invoice..", type=["jpg","jpeg","png"])
 
 # to show the uploaded image
 if upload_file is not None:
-    Image = Image.open(upload_file)
-    st.image(Image, caption="upload Image.", use_column_width=True)
+    image = Image.open(upload_file)
+    st.image(image, caption="upload Image.", use_column_width=True)
     
     
 submit = st.button("Tell me about the Invice")
